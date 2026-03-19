@@ -1,0 +1,13 @@
+<svg width="60.527" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.527 60">
+  <rect fill="#999" x="15.527" width="45" height="60"/>
+  <g>
+    <rect fill="#999" x="0.527" width="60" height="60"/>
+    <polygon fill="#666766" points="31.807 30.545 31.807 0 0.527 0 31.807 30.545" fill-rule="evenodd"/>
+    <polygon fill="#666766" points="60.527 60 60.527 30 29.804 30 60.527 60" fill-rule="evenodd"/>
+    <rect fill="#666766" x="3.295" width="57.232" height="32.403"/>
+    <rect fill="#cccccb" x="3.295" width="54.496" height="54.702" y="2.649"/>
+  </g>
+  <polygon fill="#cc1f36" stroke-width="0.888" points="21.758 30.124 38.226 37.624 38.226 22.624 21.758 30.124" stroke-linejoin="round" stroke-linecap="round" stroke="#333"/>
+  <text fill="#333" font-size="12" font-family="GreyhoundBold" transform="translate(6.257 49.681) scale(0.992 1)">Markers</text>
+  <text fill="#333" font-size="12" font-family="GreyhoundBold" transform="translate(8.519 18.681) scale(0.992 1)">Remove</text>
+</svg>

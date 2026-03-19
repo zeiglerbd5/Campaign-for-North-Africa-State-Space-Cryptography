@@ -1,0 +1,42 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <rect fill="#999" x="15" width="45" height="60"/>
+  <g>
+    <rect fill="#999" height="60" width="60"/>
+    <polygon fill="#666766" points="31.281 30.545 31.281 0 0 0 31.281 30.545" fill-rule="evenodd"/>
+    <polygon fill="#666766" points="60 60 60 30 29.277 30 60 60" fill-rule="evenodd"/>
+    <rect fill="#666766" x="2.768" width="57.232" height="32.403"/>
+    <rect fill="#cccccb" x="2.768" width="54.496" height="54.702" y="2.649"/>
+  </g>
+  <g>
+    <g>
+      <rect fill="#010101" x="5.975" width="35.361" height="12.844" y="37.951"/>
+      <rect fill="#010101" x="5.975" width="8.464" height="8.464" y="26.478"/>
+      <rect fill="#010101" x="32.871" width="8.464" height="8.464" y="26.478"/>
+      <rect fill="#010101" x="15.849" width="16.065" height="8.464" y="31.55"/>
+      <rect fill="#010101" x="9.433" width="27.196" height="4.678" y="25.091"/>
+    </g>
+    <ellipse rx="8.422" fill="#fff" ry="6.945" cx="23.811" cy="41.186"/>
+    <rect fill="#010101" x="23.928" width="1.558" height="1.558" y="34.742"/>
+    <rect fill="#010101" x="27.649" width="1.558" height="1.558" y="36.637"/>
+    <rect fill="#010101" x="29.832" width="1.558" height="1.558" y="40.166"/>
+    <rect fill="#010101" x="27.353" width="1.558" height="1.558" y="43.891"/>
+    <rect fill="#010101" x="23.032" width="1.558" height="1.558" y="45.641"/>
+    <rect fill="#010101" x="18.226" width="1.558" height="1.558" y="43.891"/>
+    <rect fill="#010101" x="16.486" width="1.558" height="1.558" y="39.586"/>
+    <rect fill="#010101" x="19.617" width="1.558" height="1.558" y="36.012"/>
+    <rect fill="#69bd45" x="20.665" width="1.669" height="4.759" y="17.149"/>
+    <rect fill="#3a53a4" x="28.7" width="1.669" height="4.759" y="15.604" transform="translate(47.518 -11.551) rotate(90)"/>
+    <rect fill="#3a53a4" x="33.415" width="1.669" height="4.759" y="17.273" transform="translate(53.902 -14.597) rotate(90)"/>
+    <rect fill="#3a53a4" x="38.121" width="1.669" height="4.759" y="15.604" transform="translate(56.939 -20.972) rotate(90)"/>
+    <rect fill="#3a53a4" x="20.665" width="1.669" height="4.605" y="20.487"/>
+    <rect fill="#69bd45" x="22.259" width="1.669" height="4.605" y="20.487"/>
+    <rect fill="#69bd45" x="23.872" width="1.669" height="4.759" y="15.604" transform="translate(42.69 -6.723) rotate(90)"/>
+    <rect fill="#69bd45" x="28.7" width="1.669" height="4.759" y="17.273" transform="translate(49.187 -9.882) rotate(90)"/>
+    <rect fill="#69bd45" x="33.415" width="1.669" height="4.759" y="15.604" transform="translate(52.233 -16.266) rotate(90)"/>
+    <rect fill="#69bd45" x="38.121" width="1.669" height="4.759" y="17.273" transform="translate(58.608 -19.304) rotate(90)"/>
+    <rect fill="#3a53a4" x="23.91" width="1.669" height="4.759" y="17.273" transform="translate(44.397 -5.092) rotate(90)"/>
+    <rect fill="#3a53a4" x="20.665" width="1.669" height="1.669" y="17.149"/>
+    <ellipse rx="5.512" fill="#fff" ry="10.593" cx="45.275" transform="translate(-1.99 30.631) rotate(-36.63)" cy="18.322"/>
+    <polygon fill="#cd1f36" points="54.025 10.7 44.188 16.298 46.399 19.064 54.025 10.7"/>
+  </g>
+</svg>

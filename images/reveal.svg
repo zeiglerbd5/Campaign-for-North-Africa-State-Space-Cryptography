@@ -1,0 +1,19 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <rect fill="#999" x="15" width="45" height="60"/>
+  <g>
+    <rect fill="#999" height="60" width="60"/>
+    <polygon fill="#666766" points="31.281 30.545 31.281 0 0 0 31.281 30.545" fill-rule="evenodd"/>
+    <polygon fill="#666766" points="60 60 60 30 29.277 30 60 60" fill-rule="evenodd"/>
+    <rect fill="#666766" x="2.768" width="57.232" height="32.403"/>
+    <rect fill="#cccccb" x="2.768" width="54.496" height="54.702" y="2.649"/>
+  </g>
+  <g>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="35.064 21.112 24.801 21.112 19.67 30 24.801 38.888 35.064 38.888 40.196 30 35.064 21.112" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="19.745 12.224 9.483 12.224 4.351 21.112 9.483 30 19.745 30 24.877 21.112 19.745 12.224" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="50.519 12.224 40.256 12.224 35.124 21.112 40.256 30 50.519 30 55.649 21.112 50.519 12.224" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="50.519 30 40.256 30 35.124 38.888 40.256 47.776 50.519 47.776 55.649 38.888 50.519 30" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="35.078 3.336 24.815 3.336 19.683 12.224 24.815 21.112 35.078 21.112 40.209 12.224 35.078 3.336" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="35.078 38.888 24.815 38.888 19.683 47.776 24.815 56.664 35.078 56.664 40.209 47.776 35.078 38.888" stroke="#333"/>
+    <polygon fill="none" stroke-width="0.883" stroke-miterlimit="10" points="19.745 30 9.483 30 4.351 38.888 9.483 47.776 19.745 47.776 24.877 38.888 19.745 30" stroke="#333"/>
+  </g>
+</svg>

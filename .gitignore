@@ -1,0 +1,27 @@
+# Generated / runtime
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Copyrighted game materials (not distributable)
+CNA-CB-Map-v1.4.pdf
+
+# Generated outputs
+cna_board.png
+*.vsav
+
+# Rendered cache
+.cache/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

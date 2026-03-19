@@ -1,0 +1,9 @@
+<svg xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="60" xmlns:svg="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="weather normal.svg" inkscape:version="1.1 (c68e22c387, 2021-05-23)" height="60" id="svg42" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs id="defs46"/>
+  <sodipodi:namedview bordercolor="#666666" inkscape:window-height="1377" inkscape:pagecheckerboard="0" inkscape:zoom="14.55" id="namedview44" inkscape:current-layer="svg42" inkscape:window-y="-8" inkscape:cy="30" inkscape:window-x="-8" inkscape:cx="30" showgrid="false" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-width="2560" inkscape:window-maximized="1" borderopacity="1.0" pagecolor="#ffffff"/>
+  <rect fill="#ffcd34" width="60" id="rect2" height="60"/>
+  <line fill="#231f20" x1="4.808" x2="55.192" y1="52.109" y2="51.814" id="line34" stroke="#231f20" stroke-miterlimit="10"/>
+  <line fill="#231f20" x1="4.808" x2="55.191" y1="50.025" y2="49.73" id="line36" stroke="#231f20" stroke-miterlimit="10"/>
+  <line fill="#231f20" x1="4.772" x2="55.156" y1="47.942" y2="47.647" id="line38" stroke="#231f20" stroke-miterlimit="10"/>
+  <line fill="#231f20" x1="4.808" x2="55.192" y1="54.083" y2="53.788" id="line40" stroke="#231f20" stroke-miterlimit="10"/>
+</svg>

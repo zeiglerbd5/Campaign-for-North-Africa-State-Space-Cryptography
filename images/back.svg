@@ -1,0 +1,10 @@
+<svg width="37.5" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.5 60">
+  <g>
+    <rect fill="#999" height="60" width="37.5"/>
+    <polygon fill="#666766" points="31.281 30.545 31.281 0 0 0 31.281 30.545" fill-rule="evenodd"/>
+    <polygon fill="#666766" points="37.5 60 37.5 30 6.777 30 37.5 60" fill-rule="evenodd"/>
+    <rect fill="#666766" x="29.792" width="7.708" height="32.403"/>
+    <rect fill="#cccccb" x="2.768" width="32.039" height="54.702" y="2.649"/>
+  </g>
+  <polygon fill="#fff" points="5.25 30.974 32.25 45.675 32.25 16.273 5.25 30.974" fill-rule="evenodd"/>
+</svg>

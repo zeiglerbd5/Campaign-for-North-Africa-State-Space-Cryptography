@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cna-ssc"
+version = "2.0.0"
+description = "Steganographic messaging hidden in Campaign for North Africa board images"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = [
+    "Pillow>=10.0",
+    "opencv-python-headless>=4.8,<4.11",
+    "numpy>=1.24,<2",
+    "cairosvg>=2.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/zeiglerbd5/Campaign-for-North-Africa-State-Space-Cryptography"
+Repository = "https://github.com/zeiglerbd5/Campaign-for-North-Africa-State-Space-Cryptography"
+
+[project.scripts]
+cna-ssc = "cna_ssc.cli:main"
+
+[tool.setuptools]
+packages = ["cna_ssc", "cna_ssc.engine", "cna_ssc.crypto", "cna_ssc.formats"]
+
+[tool.setuptools.package-data]
+cna_ssc = ["data/**/*"]

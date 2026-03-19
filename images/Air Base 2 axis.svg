@@ -1,0 +1,22 @@
+<svg xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="60" xmlns:svg="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="Air Base 2 axis.svg" inkscape:version="1.1 (c68e22c387, 2021-05-23)" height="60" id="svg86" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs id="defs90"/>
+  <sodipodi:namedview bordercolor="#666666" inkscape:window-height="1081" inkscape:pagecheckerboard="0" inkscape:zoom="14.55" id="namedview88" inkscape:current-layer="g84" inkscape:window-y="169" inkscape:cy="30" inkscape:window-x="1162" inkscape:cx="28.591065" showgrid="false" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-width="979" inkscape:window-maximized="0" borderopacity="1.0" pagecolor="#ffffff"/>
+  <rect fill="#ffcd34" width="60" id="rect60" height="60" style="fill:#cccccc;fill-opacity:1"/>
+  <g id="g84">
+    <g id="g82">
+      <g id="g68">
+        <rect fill="#010101" x="17.835" width="4.541" id="rect64" y="5.456" height="36.389"/>
+        <path fill="#010101" id="path66" d="M21.792,6.039V41.261H18.418V6.039h3.374m1.167-1.167H17.251V42.428h5.708V4.872Z" transform="translate(0 0)"/>
+      </g>
+      <g id="g74">
+        <polygon fill="#010101" id="polygon70" points="10.956 33.535 48.993 33.155 49.044 37.669 11.007 38.049 10.956 33.535"/>
+        <path fill="#010101" id="path72" d="M48.4,33.757l.037,3.323L11.6,37.447l-.037-3.322L48.4,33.757m1.179-1.2-39.23.391.064,5.708,39.23-.392-.064-5.707Z" transform="translate(0 0)"/>
+      </g>
+      <g id="g80">
+        <polygon fill="#010101" id="polygon76" points="11.167 11.987 14.384 8.843 45.583 41.801 38.982 41.844 11.167 11.987"/>
+        <path fill="#010101" id="path78" d="M14.368,9.673l29.87,31.554-5,.033L11.981,12.006l2.387-2.333m.032-1.66-4.047,3.955L38.73,42.428l8.2-.054L14.4,8.013Z" transform="translate(0 0)"/>
+      </g>
+    </g>
+    <path fill="#cc1f36" d="m 34.844957,22.499183 v -1.8 l 1.848,-1.7 c 3.672,-3.409 5.4,-5.281 5.424,-7.345 a 2.456,2.456 0 0 0 -2.784,-2.6160002 5.681,5.681 0 0 0 -3.336,1.3000002 l -0.864,-2.0880002 a 7.714,7.714 0 0 1 4.8,-1.608 c 3.457,0 5.137,2.184 5.137,4.7280002 0,2.736 -1.968,4.945 -4.681,7.465 l -1.368,1.176 v 0.038 h 6.409 v 2.45 z" id="path70" style="fill:#000000;fill-opacity:1"/>
+  </g>
+</svg>
