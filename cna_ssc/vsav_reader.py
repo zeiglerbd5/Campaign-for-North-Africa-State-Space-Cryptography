@@ -32,13 +32,11 @@ import re
 import zipfile
 from typing import Optional
 
-from .state_model import GameState, PieceState
+from .state_model import GameState
 from .constants   import (
     PIECE_BY_NAME, nearest_location_index, zone_index,
     ELIMINATED_INDEX, MARKER_TO_FLAG,
     FACE_FULL, FACE_REDUCED,
-    AIR_READY, NUM_AIR_STATES,
-    WEATHER_NAMES,
 )
 
 # ---------------------------------------------------------------------------

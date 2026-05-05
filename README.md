@@ -81,6 +81,10 @@ Decoy pieces provide camouflage. The output looks like a screenshot of a game in
 ### Requirements
 - Python 3.9+
 - System library: `cairo` (for rendering SVG counter art)
+- `pdftoppm` (Poppler) — needed by `img-encode` to render the map at 150 DPI
+- A copy of `CNA-CB-Map-v1.4.pdf` placed at the repo root (gitignored —
+  copyrighted SPI material, not redistributable). Without it, `img-encode`
+  will fail; the `.vsav` commands work fine without it.
 
 ### Quick Install
 
@@ -204,8 +208,8 @@ message = decode(vsav_bytes, key=b"my_key_material_here")
 ## Project Structure
 
 ```
-cna_ssc/
-├── cli.py               # Command-line interface (7 subcommands)
+cna_ssc/                  # Shipping package — used by the CLI
+├── cli.py                # Command-line interface
 ├── encoder.py            # High-level encode: bytes → .vsav
 ├── decoder.py            # High-level decode: .vsav → bytes
 ├── bijection.py          # GameState ↔ state-space integer
@@ -216,12 +220,25 @@ cna_ssc/
 ├── vsav_writer.py        # Generate valid .vsav files
 ├── image_steg.py         # Image-based steganography (PNG board images)
 ├── image_export.py       # Export game state as schematic PNG
-├── engine/               # Alternative template-based bijection
-├── crypto/               # Experimental template-key encode/decode
-├── formats/              # .vsav codec and buildFile parser
-├── data/                 # Playable hex positions
-└── tests/                # Unit and integration tests
+└── data/                 # Playable hex positions
+
+experimental/             # Parked V2 design (see experimental/README.md)
+├── engine/               # Restricted bijection over a template's pieces
+├── crypto/               # Template-keyed encoder/decoder
+├── formats/              # Cleaner .vsav codec + buildFile.xml parser
+└── tests/                # 19 tests against the V2 modules
 ```
+
+The shipping CLI (`cna-ssc img-encode`, `cna-ssc img-decode`, etc.) uses the
+top-level `cna_ssc/` package and produces a legal CNA game state — every
+piece placed at a valid position, though not necessarily a state that would
+arise during real play.
+
+`experimental/` holds a second-pass design that operates on the subset of
+pieces present in a template `.vsav` file, aiming for output that looks like
+a plausible mid-game continuation. It is not wired into the CLI and is kept
+in-tree for future work — see [`experimental/README.md`](experimental/README.md)
+for details.
 
 ## State Space Breakdown
 
@@ -257,13 +274,18 @@ State space             ~10^8,528  (~28,333 bits)
 
 ## Running Tests
 
+The V2 (experimental) test suite covers `experimental/engine/` and
+`experimental/formats/`:
+
 ```bash
 # Unit tests
-pytest cna_ssc/tests/ -v -k "not integration"
+PYTHONPATH=. pytest experimental/tests/ -v -k "not integration"
 
 # Integration tests (requires .vsav files)
-pytest cna_ssc/tests/ -v -m integration
+PYTHONPATH=. pytest experimental/tests/ -v -m integration
 ```
+
+The shipping V1 path is exercised end-to-end via `cna-ssc demo`.
 
 ## Dependencies
 

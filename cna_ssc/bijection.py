@@ -29,12 +29,11 @@ from __future__ import annotations
 import hashlib
 import hmac
 import math
-import os
 from typing import Literal
 
-from .constants   import PIECES, get_radices, RADICES_META, ELIMINATED_INDEX, NUM_LOCATIONS
-from .mixed_radix import encode_segments, decode_segments, total_states, from_bytes, capacity_bytes
-from .state_model import GameState, PieceState
+from .constants   import PIECES, get_radices, RADICES_META
+from .mixed_radix import total_states, from_bytes, capacity_bytes
+from .state_model import GameState
 
 
 # ---------------------------------------------------------------------------
@@ -407,7 +406,7 @@ def _apply_constraints(state: GameState, key: bytes) -> None:
     """
     from .constants import (
         LOCATIONS, NUM_LOCATIONS, ELIMINATED_INDEX,
-        zone_index, HEX_POSITIONS,
+        zone_index,
     )
 
     # Clamp meta state to legal ranges

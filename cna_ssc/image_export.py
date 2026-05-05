@@ -30,7 +30,7 @@ import zlib
 from typing import Optional
 
 from .state_model  import GameState
-from .constants    import LOCATIONS, NUM_LOCATIONS, ELIMINATED_INDEX, PIECES, PIECE_BY_NAME
+from .constants    import LOCATIONS, NUM_LOCATIONS, PIECE_BY_NAME
 
 
 # ---------------------------------------------------------------------------
@@ -221,7 +221,6 @@ def export_png_metadata(
     to what would be in a .vsav file, enabling recovery without Vassal.
     """
     from .vsav_writer  import write_vsav
-    from .vsav_reader  import _encode_saved_game, _decode_saved_game
     import zipfile
 
     # Get the savedGame bytes from a .vsav

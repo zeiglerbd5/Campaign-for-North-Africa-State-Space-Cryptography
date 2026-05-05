@@ -29,7 +29,7 @@ import json
 import os
 from typing import List, Dict, Tuple, Optional
 
-from cna_ssc.engine.hex_grid import (
+from experimental.engine.hex_grid import (
     ALL_LOCATIONS, HEX_POSITIONS, OFF_MAP_ZONE_NAMES,
     LOCATION_INDEX, N_ALL_LOCATIONS,
 )
@@ -54,7 +54,7 @@ def _load() -> List[Dict]:
     else:
         raise FileNotFoundError(
             f"Piece registry data not found at {json_path}. "
-            "Run: python -m cna_ssc.formats.buildfile_parser <buildFile.xml>"
+            "Run: python -m experimental.formats.buildfile_parser <buildFile.xml>"
         )
     return _RAW
 

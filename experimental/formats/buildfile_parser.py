@@ -5,7 +5,7 @@ Parse CNAv2.1.0.vmod's buildFile.xml and generate the piece registry data
 file used by piece_registry.py.
 
 Usage:
-    python -m cna_ssc.formats.buildfile_parser buildFile.xml
+    python -m experimental.formats.buildfile_parser buildFile.xml
 
 This writes:
     cna_ssc/engine/piece_registry_data.json
@@ -159,7 +159,7 @@ def write_registry(pieces: List[Dict], output_path: str) -> None:
 def main():
     if len(sys.argv) < 2:
         print(
-            "Usage: python -m cna_ssc.formats.buildfile_parser <buildFile.xml> "
+            "Usage: python -m experimental.formats.buildfile_parser <buildFile.xml> "
             "[output.json]"
         )
         sys.exit(1)
@@ -181,7 +181,7 @@ def main():
 
     write_registry(pieces, output_path)
     print(f"\nPiece registry written to {output_path}")
-    print("Now import cna_ssc.engine.piece_registry to use it.")
+    print("Now import experimental.engine.piece_registry to use it.")
 
 
 if __name__ == "__main__":

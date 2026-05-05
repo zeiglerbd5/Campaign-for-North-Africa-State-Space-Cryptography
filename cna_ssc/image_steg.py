@@ -30,8 +30,7 @@ import hmac
 import io
 import math
 import os
-import struct
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -840,7 +839,6 @@ def decode_message(
 
 def main():
     """Simple CLI for testing."""
-    import sys
     import argparse
 
     parser = argparse.ArgumentParser(description="CNA Image Steganography")

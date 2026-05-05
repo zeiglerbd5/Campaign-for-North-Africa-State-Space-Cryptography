@@ -10,7 +10,7 @@ Also provides decode_from_file() for convenience.
 """
 
 from __future__ import annotations
-from typing import Literal, Optional
+from typing import Literal
 
 from .vsav_reader import read_vsav
 from .bijection   import state_to_message
