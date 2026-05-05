@@ -18,17 +18,14 @@ The .vsav writer emits 'sendto' commands for each placed piece and
 
 from __future__ import annotations
 import io
-import time
 import zipfile
 from typing import Optional
 
 from .state_model import GameState, PieceState
 from .constants   import (
-    PIECES, PIECE_BY_NAME, LOCATIONS, NUM_LOCATIONS, ELIMINATED_INDEX,
-    STATUS_FLAG_NAMES, FACE_REDUCED,
-    WEATHER_NAMES, zone_index,
+    PIECES, LOCATIONS, NUM_LOCATIONS, STATUS_FLAG_NAMES, zone_index,
 )
-from .vsav_reader import _encode_saved_game, VSAV_XOR_KEY
+from .vsav_reader import _encode_saved_game
 
 
 # ---------------------------------------------------------------------------
@@ -262,7 +259,6 @@ def write_vsav(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    import os
 
     print("=== vsav_writer Self-Test ===\n")
 

@@ -23,7 +23,7 @@ import pytest
 # ──────────────────────────────────────────────────────────────────────────────
 
 def test_hex_grid_roundtrip():
-    from cna_ssc.engine.hex_grid import pixel_to_hex, hex_to_pixel
+    from experimental.engine.hex_grid import pixel_to_hex, hex_to_pixel
 
     for col in [1, 10, 50, 100, 174]:
         for row in [1, 5, 15, 29]:
@@ -34,14 +34,14 @@ def test_hex_grid_roundtrip():
 
 def test_hex_grid_known_positions():
     """Verify Tripoli is identified as an off-map zone, not a hex."""
-    from cna_ssc.engine.hex_grid import location_id_from_pixel
+    from experimental.engine.hex_grid import location_id_from_pixel
 
     loc = location_id_from_pixel(256, 1895, zone_hint="Tripoli")
     assert loc == "Tripoli"
 
 
 def test_all_locations_non_empty():
-    from cna_ssc.engine.hex_grid import HEX_POSITIONS, OFF_MAP_ZONE_NAMES, ALL_LOCATIONS
+    from experimental.engine.hex_grid import HEX_POSITIONS, OFF_MAP_ZONE_NAMES, ALL_LOCATIONS
 
     assert len(HEX_POSITIONS) > 2000
     assert len(OFF_MAP_ZONE_NAMES) > 10
@@ -49,7 +49,7 @@ def test_all_locations_non_empty():
 
 
 def test_location_index_unique():
-    from cna_ssc.engine.hex_grid import ALL_LOCATIONS, LOCATION_INDEX
+    from experimental.engine.hex_grid import ALL_LOCATIONS, LOCATION_INDEX
 
     assert len(LOCATION_INDEX) == len(ALL_LOCATIONS)
     for i, loc in enumerate(ALL_LOCATIONS):
@@ -61,7 +61,7 @@ def test_location_index_unique():
 # ──────────────────────────────────────────────────────────────────────────────
 
 def test_mixed_radix_encode_decode():
-    from cna_ssc.engine.mixed_radix import encode, decode
+    from experimental.engine.mixed_radix import encode, decode
 
     radices = [5, 3, 7, 4, 10]
     indices = [2, 1, 5, 3, 7]
@@ -70,7 +70,7 @@ def test_mixed_radix_encode_decode():
 
 
 def test_mixed_radix_zero():
-    from cna_ssc.engine.mixed_radix import encode, decode
+    from experimental.engine.mixed_radix import encode, decode
 
     radices = [10, 20, 30]
     indices = [0, 0, 0]
@@ -79,7 +79,7 @@ def test_mixed_radix_zero():
 
 
 def test_mixed_radix_max():
-    from cna_ssc.engine.mixed_radix import encode, decode, product
+    from experimental.engine.mixed_radix import encode, decode, product
 
     radices = [5, 3, 7]
     max_indices = [r - 1 for r in radices]
@@ -89,28 +89,28 @@ def test_mixed_radix_max():
 
 
 def test_mixed_radix_single():
-    from cna_ssc.engine.mixed_radix import encode, decode
+    from experimental.engine.mixed_radix import encode, decode
 
     assert encode([3], [10]) == 3
     assert decode(7, [10]) == [7]
 
 
 def test_mixed_radix_overflow():
-    from cna_ssc.engine.mixed_radix import decode
+    from experimental.engine.mixed_radix import decode
 
     with pytest.raises(ValueError, match="too large"):
         decode(1000, [5, 3])  # product=15, 1000 >> 15
 
 
 def test_mixed_radix_out_of_range():
-    from cna_ssc.engine.mixed_radix import encode
+    from experimental.engine.mixed_radix import encode
 
     with pytest.raises(ValueError, match="out of range"):
         encode([5], [5])  # 5 is not < 5
 
 
 def test_message_frame_unframe():
-    from cna_ssc.engine.mixed_radix import frame_message, unframe_message
+    from experimental.engine.mixed_radix import frame_message, unframe_message
 
     msg = b"Hello, World!"
     framed = frame_message(msg)
@@ -119,7 +119,7 @@ def test_message_frame_unframe():
 
 
 def test_message_embed_extract():
-    from cna_ssc.engine.mixed_radix import (
+    from experimental.engine.mixed_radix import (
         embed_message, extract_message, frame_message, unframe_message
     )
 
@@ -134,7 +134,7 @@ def test_message_embed_extract():
 
 def test_large_message_embed():
     """Test with a 3KB message in a large state space."""
-    from cna_ssc.engine.mixed_radix import (
+    from experimental.engine.mixed_radix import (
         embed_message, extract_message, frame_message, unframe_message, bits
     )
 
@@ -156,7 +156,7 @@ def test_large_message_embed():
 
 def test_bijection_encode_decode_synthetic():
     """Test the encode/decode logic using synthetic radices."""
-    from cna_ssc.engine import mixed_radix as mr
+    from experimental.engine import mixed_radix as mr
 
     # Simulate 5 pieces with 100 positions each
     radices = [100] * 5
@@ -171,7 +171,7 @@ def test_bijection_encode_decode_synthetic():
 
 def _make_minimal_vsav(commands: List[str], tmp_path: str) -> str:
     """Create a minimal valid .vsav for testing."""
-    from cna_ssc.formats.vsav_codec import XOR_KEY, VSAV_HEADER
+    from experimental.formats.vsav_codec import XOR_KEY, VSAV_HEADER
 
     stream = "\x00begin_save\x1b" + "\x1b".join(commands)
     raw = stream.encode("latin-1")
@@ -191,7 +191,7 @@ def _make_minimal_vsav(commands: List[str], tmp_path: str) -> str:
 
 def test_vsav_encode_decode_roundtrip(tmp_path):
     """Parse a synthetic .vsav and verify commands are preserved."""
-    from cna_ssc.formats.vsav_codec import parse_vsav
+    from experimental.formats.vsav_codec import parse_vsav
 
     tmp = str(tmp_path)
     cmds = [
@@ -205,7 +205,7 @@ def test_vsav_encode_decode_roundtrip(tmp_path):
 
 def test_vsav_xor_roundtrip():
     """Verify XOR encode/decode is its own inverse."""
-    from cna_ssc.formats.vsav_codec import _xor_encode, _xor_decode
+    from experimental.formats.vsav_codec import _xor_encode, _xor_decode
 
     text = "Hello, Campaign for North Africa!\x1b+/12345/sendto;"
     hex_str = _xor_encode(text)
@@ -231,7 +231,7 @@ def test_parse_brevity_vsav():
     if not os.path.exists(BREVITY_VSAV):
         pytest.skip(f"Real .vsav not found at {BREVITY_VSAV}")
 
-    from cna_ssc.formats.vsav_codec import parse_vsav
+    from experimental.formats.vsav_codec import parse_vsav
 
     save = parse_vsav(BREVITY_VSAV)
     assert len(save.pieces) > 10, f"Too few pieces: {len(save.pieces)}"
@@ -251,7 +251,7 @@ def test_buildfile_parser():
     if not os.path.exists(BUILD_FILE):
         pytest.skip(f"buildFile.xml not found at {BUILD_FILE}")
 
-    from cna_ssc.formats.buildfile_parser import parse_buildfile
+    from experimental.formats.buildfile_parser import parse_buildfile
 
     pieces = parse_buildfile(BUILD_FILE)
     assert len(pieces) > 2000
@@ -268,14 +268,14 @@ def test_full_encode_decode_roundtrip(tmp_path):
         pytest.skip("Real .vsav not found")
 
     # Ensure registry exists
-    from cna_ssc.engine.piece_registry import pieces as get_pieces
+    from experimental.engine.piece_registry import pieces as get_pieces
     try:
         ps = get_pieces()
     except FileNotFoundError:
         pytest.skip("Piece registry not built. Run: python -m cna_ssc setup buildFile.xml")
 
-    from cna_ssc.crypto.encoder import encode_text
-    from cna_ssc.crypto.decoder import decode_to_text
+    from experimental.crypto.encoder import encode_text
+    from experimental.crypto.decoder import decode_to_text
 
     message = "This is a secret message encoded into a Campaign for North Africa save file."
     output = str(tmp_path / "encoded.vsav")

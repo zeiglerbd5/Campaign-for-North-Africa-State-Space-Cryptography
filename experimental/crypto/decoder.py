@@ -25,9 +25,9 @@ from __future__ import annotations
 import os
 from typing import List, Optional
 
-from cna_ssc.engine import bijection
-from cna_ssc.engine import mixed_radix as mr
-from cna_ssc.formats.vsav_codec import parse_vsav, vsav_to_locations
+from experimental.engine import bijection
+from experimental.engine import mixed_radix as mr
+from experimental.formats.vsav_codec import parse_vsav, vsav_to_locations
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -36,7 +36,7 @@ from cna_ssc.formats.vsav_codec import parse_vsav, vsav_to_locations
 
 def _active_names_from_vsav(vsav_path: str) -> List[str]:
     """Get canonical ordered active piece list — must match encoder exactly."""
-    from cna_ssc.crypto.encoder import active_piece_names
+    from experimental.crypto.encoder import active_piece_names
     return active_piece_names(vsav_path)
 
 
@@ -136,7 +136,7 @@ def inspect(vsav_path: str) -> dict:
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("Usage: python -m cna_ssc.crypto.decoder <file.vsav>")
+        print("Usage: python -m experimental.crypto.decoder <file.vsav>")
         sys.exit(1)
     vsav_path = sys.argv[1]
     info = inspect(vsav_path)

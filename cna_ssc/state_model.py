@@ -17,12 +17,8 @@ from typing import Optional
 import json
 
 from .constants import (
-    PIECES, PIECE_BY_NAME, PIECE_INDEX, get_radices,
-    NUM_LOCATIONS, ELIMINATED_INDEX, LOCATIONS,
-    FACE_FULL, FACE_REDUCED, NUM_FACES,
-    AIR_READY, NUM_AIR_STATES,
-    NUM_TURNS, NUM_OP_STAGE, NUM_WEATHER,
-    nearest_location_index, zone_index,
+    PIECES, PIECE_BY_NAME, ELIMINATED_INDEX, LOCATIONS,
+    FACE_FULL, AIR_READY, nearest_location_index, zone_index,
     STATUS_FLAG_NAMES,
 )
 

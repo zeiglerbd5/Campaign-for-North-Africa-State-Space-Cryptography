@@ -34,9 +34,9 @@ the state integer N.
 from __future__ import annotations
 from typing import Dict, List, Optional, Tuple
 
-from cna_ssc.engine import mixed_radix as mr
-from cna_ssc.engine.piece_registry import pieces, Piece
-from cna_ssc.engine.hex_grid import location_pixel, OFF_MAP_ZONE_NAMES
+from experimental.engine import mixed_radix as mr
+from experimental.engine.piece_registry import pieces, Piece
+from experimental.engine.hex_grid import location_pixel, OFF_MAP_ZONE_NAMES
 
 # Type alias: piece_name → location_id
 GameState = Dict[str, str]

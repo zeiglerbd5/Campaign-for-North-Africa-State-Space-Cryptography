@@ -32,9 +32,9 @@ import os
 import secrets
 from typing import Dict, List, Optional
 
-from cna_ssc.engine import bijection
-from cna_ssc.engine import mixed_radix as mr
-from cna_ssc.formats.vsav_codec import parse_vsav, write_vsav, VassalSave
+from experimental.engine import bijection
+from experimental.engine import mixed_radix as mr
+from experimental.formats.vsav_codec import parse_vsav, write_vsav, VassalSave
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -53,7 +53,7 @@ def active_piece_names(template_vsav: str) -> List[str]:
     the reader would return the OC location, not the map location.
     """
     save = parse_vsav(template_vsav)
-    from cna_ssc.engine.piece_registry import pieces as all_pieces
+    from experimental.engine.piece_registry import pieces as all_pieces
     registry_names = {p.name for p in all_pieces()}
 
     # A piece is relocatable if:
@@ -193,7 +193,7 @@ def print_capacity(template_vsav: Optional[str] = None) -> None:
         print(f"Template:              {os.path.basename(template_vsav)}")
         print(f"Active pieces:         {len(names)}")
     else:
-        from cna_ssc.engine.piece_registry import radix_list
+        from experimental.engine.piece_registry import radix_list
         radices = radix_list()
         bits = mr.bits(radices)
         max_bytes = int(bits // 8) - mr.FRAME_HEADER_BYTES

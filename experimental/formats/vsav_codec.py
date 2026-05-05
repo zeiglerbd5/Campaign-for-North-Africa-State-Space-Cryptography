@@ -53,7 +53,7 @@ import zipfile
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
-from cna_ssc.engine.hex_grid import (
+from experimental.engine.hex_grid import (
     location_pixel,
     location_id_from_pixel,
     OFF_MAP_ZONE_BY_NAME,
