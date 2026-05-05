@@ -24,7 +24,7 @@ Repository = "https://github.com/zeiglerbd5/Campaign-for-North-Africa-State-Spac
 cna-ssc = "cna_ssc.cli:main"
 
 [tool.setuptools]
-packages = ["cna_ssc", "cna_ssc.engine", "cna_ssc.crypto", "cna_ssc.formats"]
+packages = ["cna_ssc"]
 
 [tool.setuptools.package-data]
 cna_ssc = ["data/**/*"]
