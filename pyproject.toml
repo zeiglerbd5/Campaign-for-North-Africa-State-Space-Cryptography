@@ -25,6 +25,3 @@ cna-ssc = "cna_ssc.cli:main"
 
 [tool.setuptools]
 packages = ["cna_ssc"]
-
-[tool.setuptools.package-data]
-cna_ssc = ["data/**/*"]
