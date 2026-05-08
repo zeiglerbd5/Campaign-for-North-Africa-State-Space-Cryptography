@@ -194,30 +194,67 @@ class PieceInfo:
     nationality: str  # first 2 chars (GE, IT, BR, etc.)
 
 
+_NATIONALITY_PREFIXES = (
+    # Real combatant nationalities. Greek units are filed under 'AL'
+    # (Allied), not 'GR' — the 'GR' prefix in this asset set flags
+    # admin/marker tokens (Grey-01 blank, GR Gun Rep, GR Blank BG, etc.)
+    # which have insufficient visual detail to be reliably template-matched.
+    'GE', 'IT', 'BR', 'AU', 'NZ', 'SA', 'IN', 'AL', 'FR',
+    'GD', 'BD', 'RD', 'NR', 'PO', 'OC',
+)
+
+# Minimum grayscale stddev for a template to be uniquely localizable.
+# Solid-color counters score ~0; real unit counters score >> 30.
+_MIN_TEMPLATE_STDDEV = 5.0
+
+
+def _template_is_distinctive(piece: 'PieceInfo') -> bool:
+    """Render the piece (or load from cache) and check it has enough visual
+    variation to be uniquely template-matched. Caches the rendered template
+    in TEMPLATES_DIR so _ensure_templates can reuse it later."""
+    cache_path = TEMPLATES_DIR / f"{piece.name}.png"
+    if cache_path.exists():
+        img = cv2.imread(str(cache_path), cv2.IMREAD_UNCHANGED)
+    else:
+        try:
+            pil_img = _render_counter(piece)
+        except Exception:
+            return False
+        TEMPLATES_DIR.mkdir(parents=True, exist_ok=True)
+        pil_img.save(str(cache_path))
+        img = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGBA2BGRA)
+    if img is None:
+        return False
+    gray = cv2.cvtColor(img[:, :, :3], cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
+    return float(gray.std()) > _MIN_TEMPLATE_STDDEV
+
+
 def _discover_pieces() -> List[PieceInfo]:
-    """Find all unit counter images in the images directory."""
+    """Find all unit counter images in the images directory.
+
+    Filters out admin/marker tokens (low-detail templates) which can't be
+    reliably localized by template matching and would cause flaky decode.
+    """
     pieces = []
     seen_names = set()
     for f in sorted(IMAGES_DIR.iterdir()):
         if not f.suffix.lower() in ('.svg', '.png'):
             continue
         stem = f.stem
-        # Only include unit counters (nationality prefix)
-        if len(stem) < 3 or stem[0:2].upper() not in (
-            'GE', 'IT', 'BR', 'AU', 'NZ', 'SA', 'IN', 'AL', 'FR', 'GR',
-            'GD', 'BD', 'RD', 'NR', 'PO', 'OC',
-        ):
+        if len(stem) < 3 or stem[0:2].upper() not in _NATIONALITY_PREFIXES:
             continue
-        # Prefer SVG over PNG if both exist
         if stem in seen_names:
             continue
         seen_names.add(stem)
-        pieces.append(PieceInfo(
+        info = PieceInfo(
             name=stem,
             image=f.name,
             path=str(f),
             nationality=stem[:2].upper(),
-        ))
+        )
+        if not _template_is_distinctive(info):
+            continue
+        pieces.append(info)
     return pieces
 
 
