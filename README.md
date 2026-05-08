@@ -132,6 +132,8 @@ cna_ssc/
 
 ## License
 
-MIT License.
+All rights reserved. This source is published for portfolio review and
+evaluation only — no use, copying, modification, or redistribution is
+permitted without written permission. See [LICENSE](LICENSE).
 
 The Campaign for North Africa is © 1979 SPI / © 2022 White Box Games. Vassal is open-source software (LGPL). Counter images are sourced from the community Vassal module. This project uses CNA-themed assets but is not affiliated with or endorsed by the rights holders.

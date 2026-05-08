@@ -8,7 +8,7 @@ version = "2.0.0"
 description = "Steganographic messaging hidden in Campaign for North Africa board images"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "MIT"}
+license = {text = "All Rights Reserved"}
 dependencies = [
     "Pillow>=10.0",
     "opencv-python-headless>=4.8,<4.11",
