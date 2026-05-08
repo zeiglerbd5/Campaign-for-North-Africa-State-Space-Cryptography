@@ -16,13 +16,15 @@ python3 -c "import sys; assert sys.version_info >= (3,9), 'Python 3.9+ required'
     exit 1
 }
 
-# Install system dependency for CairoSVG (renders counter art)
+# Install system dependencies:
+#   cairo   — required by CairoSVG (renders counter art)
+#   poppler — provides pdftoppm (renders the map PDF)
 if command -v apt-get &> /dev/null; then
-    echo "Installing system dependencies (libcairo2)..."
-    sudo apt-get install -y libcairo2-dev > /dev/null 2>&1 || true
+    echo "Installing system dependencies (libcairo2, poppler-utils)..."
+    sudo apt-get install -y libcairo2-dev poppler-utils > /dev/null 2>&1 || true
 elif command -v brew &> /dev/null; then
-    echo "Installing system dependencies (cairo)..."
-    brew install cairo > /dev/null 2>&1 || true
+    echo "Installing system dependencies (cairo, poppler)..."
+    brew install cairo poppler > /dev/null 2>&1 || true
 fi
 
 # Install Python dependencies

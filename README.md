@@ -46,9 +46,9 @@ An observer without the key cannot distinguish the encoded image from a random (
 
 ### Requirements
 - Python 3.9+
-- System library: `cairo` (for rendering SVG counter art)
-- `pdftoppm` (Poppler) — needed to render the map at 150 DPI
-- A copy of `CNA-CB-Map-v1.4.pdf` placed at the repo root (gitignored — copyrighted SPI material, not redistributable)
+- System libraries: `cairo` (renders SVG counter art) and `poppler` (provides `pdftoppm`, renders the map PDF)
+
+The `install.sh` script installs both via Homebrew (macOS) or apt (Ubuntu/Debian).
 
 ### Quick Install
 
@@ -62,10 +62,10 @@ Or install manually:
 
 ```bash
 # macOS
-brew install cairo
+brew install cairo poppler
 
 # Ubuntu/Debian
-sudo apt-get install libcairo2-dev
+sudo apt-get install libcairo2-dev poppler-utils
 
 # Python dependencies
 pip3 install Pillow "opencv-python-headless>=4.8,<4.11" "numpy>=1.24,<2" cairosvg
