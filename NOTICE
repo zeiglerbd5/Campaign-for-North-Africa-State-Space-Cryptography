@@ -1,0 +1,32 @@
+NOTICE — Third-party assets bundled with this repository
+=========================================================
+
+The MIT license in LICENSE applies to the original source code in this
+repository. It does NOT grant any rights to the third-party assets listed
+below. Those assets are bundled here for the project to function and are
+used in good faith for non-commercial, educational, and demonstrative
+purposes. If you are a rights holder and would like an asset removed,
+please open an issue.
+
+CNA map PDF
+-----------
+File: CNA-CB-Map-v1.4.pdf
+
+The map is derived from *The Campaign for North Africa: The Desert War
+1940-43*, published by Simulations Publications, Inc. (SPI) in 1979.
+Current rights are believed to be held by White Box Games (© 2022).
+Bundled here so the rendering pipeline works out of the box.
+
+Counter art (images/)
+---------------------
+The unit counter SVG and PNG files in `images/` originate from the
+community-maintained Vassal module for The Campaign for North Africa.
+Vassal itself is open-source software released under the LGPL; the
+module's counter art is contributed by the wargaming community.
+
+Project status
+--------------
+This project uses CNA-themed assets but is not affiliated with,
+sponsored by, or endorsed by SPI, White Box Games, the Vassal Engine
+project, or any contributor to the Vassal CNA module. All trademarks
+and copyrights remain the property of their respective owners.
