@@ -4,7 +4,7 @@ A steganographic messaging system that hides secret messages inside PNG board im
 
 The output looks like a screenshot of a CNA game in progress. Without the key, an observer cannot distinguish it from a legitimate mid-game board state.
 
-![CNA Board](cna_board.png)
+![CNA Board](example_board.png)
 
 ## Why This Works
 
