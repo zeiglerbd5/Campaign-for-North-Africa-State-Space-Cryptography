@@ -1,46 +1,54 @@
-# Campaign for North Africa State Space Cryptography
+# Campaign for North Africa — Steganography
 
-A steganographic messaging system that hides secret messages inside PNG board images of *The Campaign for North Africa* (SPI, 1979) by exploiting the astronomical state space of the most complex board wargame ever published.
+A steganographic messaging system that hides short secret messages inside PNG images that look like the board of *The Campaign for North Africa* (SPI, 1979) — the most notoriously complex board wargame ever published.
 
-The output looks like a screenshot of a CNA game in progress. Without the key, an observer cannot distinguish it from a legitimate mid-game board state.
+The output is a PNG of a CNA map with counters placed on it. The cover medium is the *positions* of those counters: a working key turns a message into a deterministic placement, and a recipient with the same key can recover the message by detecting where each counter ended up.
 
 ![CNA Board](example_board.png)
 
-## Why This Works
+## What this is, and what it isn't
 
-A CNA game has 1,307 pieces, each with thousands of valid positions on a 174×29 hex grid plus 19 off-map zones. The total number of possible board states is:
+This is a **steganography** project first. The interesting part is the cover medium — the enormous space of plausible-looking board configurations of a famously sprawling wargame — not the cryptographic primitives, which are conventional.
 
-```
-~10^8,528 configurations
-```
+- **Cryptographic security** is conventional and modest: HKDF-SHA256 derives a per-message keystream that XOR-encrypts the payload before it is mapped to piece positions. Effective keyspace is the entropy of the user passphrase. There is no key stretching (PBKDF / scrypt / argon2), so do not treat this as a high-assurance cipher.
+- **Steganographic security** rests on the cover-image looking like an in-progress CNA game to a casual observer, and on the recipient knowing that a particular image carries a message at all. It does not rest on the combinatorial size of the CNA state space, and the README no longer claims otherwise.
 
-For comparison:
-- **Chess**: ~10^44 legal positions
-- **Go**: ~10^170 legal positions
-- **AES-256 keyspace**: ~10^77
-- **CNA**: ~10^8,528 — larger by **8,358 orders of magnitude** than Go
+If you came here for an interesting cover medium and a clean implementation of "encode bytes as positions of distinguishable objects on a large grid," that is what this is. If you came here for a novel cipher, this is not that.
 
-No computer — classical or quantum — can enumerate this space. The observable universe can perform roughly 10^140 operations in its entire lifetime. Even Grover's quantum search algorithm only reduces the space to ~10^4,264, which still exceeds physical possibility by over 4,000 orders of magnitude.
+## Why CNA, specifically
 
-**Security comes from physical impossibility, not computational hardness.**
+CNA is unusual: ~1,300 unit counters, a long hex map (~165 columns × ~25 playable rows), per-unit positioning that varies enormously between games, and a community in which sharing screenshots of mid-game states is normal. That combination makes a *plausible* CNA board screenshot a high-entropy, low-suspicion cover medium — far higher than, say, a chessboard, where any position is one of ~10^44 and incongruities are obvious to a human reader.
 
-## How It Works
+The number of distinguishable board states the encoder can actually produce is still very large (well in excess of what a brute-force search over cover-images is meaningful for), but the load-bearing claim is *plausibility of the cover*, not enumeration-hardness of the space.
 
-Counter images are rendered onto a map and their positions encode data using a two-layer key system:
+## How it works
 
-1. **Layer 1**: A random session nonce is encoded into "key pieces" selected by a system key
-2. **Layer 2**: The message is encoded into "message pieces" selected by a working key derived from the system key + nonce
+Two layers, both keyed:
 
-Decoy pieces provide camouflage. The output is a PNG that looks like a screenshot of a real CNA game in progress.
+1. **Layer 1 — Session nonce.** A random 128-bit nonce is encoded into the positions of a deterministically-selected set of "key pieces." The selection is driven by either a hardcoded system constant or, if supplied, a user passphrase mixed into it via HKDF.
+2. **Layer 2 — Message.** A working key is derived as `HKDF(base_key, info="cna-session", salt=nonce)`. A separate set of message pieces is selected with the working key, and the message is encoded into their positions using a mixed-radix, without-replacement scheme so each piece lands on a unique hex.
 
-### Encryption Layer
+Additional **decoy pieces** are placed at HKDF-derived positions to make the image look more like an in-progress game rather than a sparse opening.
 
-Messages are not embedded as raw bytes. The system uses **HKDF-SHA256** (RFC 5869) key derivation to produce:
-- A **cipher key** (XOR stream encryption)
-- A **MAC key** (HMAC-SHA256 authentication)
-- A **nonce** (semantic security — the same message produces different output each time)
+Decoding reverses both layers: detect each expected piece via template matching, snap its location to the nearest hex, and read out the bytes.
 
-An observer without the key cannot distinguish the encoded image from a random (but valid) board configuration.
+### Encryption layer
+
+Payloads are XOR-encrypted with an HKDF-SHA256 keystream before being mapped to positions. The same plaintext encodes to a different image each time, because the session nonce changes the working key.
+
+**Known limitation:** the current version does not verify a MAC tag on decode. A successful decode means template matching succeeded and the keystream produced valid UTF-8 — it does not prove the image was produced by someone with the key. Treat decoded output as unauthenticated until this is fixed.
+
+## Threat model
+
+What this resists:
+- A casual observer who sees the PNG and does not suspect it contains anything.
+- Recovery without the user passphrase, assuming the passphrase has non-trivial entropy.
+
+What this does **not** resist:
+- An attacker who knows the system exists and has the codebase, when no user passphrase is set. The "system key" baked into the code is not a secret.
+- Cryptanalysis by a CNA-literate observer who notices the board state is implausible (too few units, unrealistic placement, missing setup conventions).
+- Statistical analysis of position distributions across many encoded images.
+- Tampering — see the MAC limitation above.
 
 ## Installation
 
@@ -50,7 +58,7 @@ An observer without the key cannot distinguish the encoded image from a random (
 
 The `install.sh` script installs both via Homebrew (macOS) or apt (Ubuntu/Debian).
 
-### Quick Install
+### Quick install
 
 ```bash
 git clone https://github.com/zeiglerbd5/Campaign-for-North-Africa-State-Space-Cryptography.git
@@ -101,27 +109,25 @@ python3 -m cna_ssc
 
 Messages are limited to 50 characters per image.
 
-## Project Structure
+## Project structure
 
 ```
 cna_ssc/
 ├── __init__.py
 ├── __main__.py
 ├── cli.py             # Command-line interface
-├── image_steg.py      # PNG-based steganography (encode + decode)
-└── README.md
+└── image_steg.py      # PNG-based steganography (encode + decode)
 ```
 
-## Security Properties
+## Properties
 
-| Property | Guarantee |
+| Property | Status |
 |---|---|
-| **Brute-force resistance** | 10^8,528 states; physically impossible to enumerate |
-| **Quantum resistance** | Grover's algorithm reduces to 10^4,264; observable universe can do ~10^140 |
-| **Cover authenticity** | Output is a plausible CNA board screenshot |
-| **Deniability** | Sharing board screenshots is routine in the wargaming community |
-| **Semantic security** | Random nonce ensures same message produces different output each time |
-| **Authentication** | HMAC-SHA256 tag detects wrong key or tampering |
+| **Cover plausibility** | Reasonable to a casual viewer; weak to a CNA-literate observer because piece density is below mid-game norms |
+| **Semantic security** | Random per-message nonce — same plaintext produces a different image each time |
+| **Confidentiality** | HKDF-SHA256 keystream; effective keyspace = user passphrase entropy |
+| **Authentication** | Not yet — MAC verification on decode is a known TODO |
+| **Deniability** | Sharing CNA board screenshots is unremarkable in the wargaming community |
 
 ## Dependencies
 
@@ -132,8 +138,8 @@ cna_ssc/
 
 ## License
 
-All rights reserved. This source is published for portfolio review and
-evaluation only — no use, copying, modification, or redistribution is
-permitted without written permission. See [LICENSE](LICENSE).
+Source code is released under the MIT License — see [LICENSE](LICENSE).
 
-The Campaign for North Africa is © 1979 SPI / © 2022 White Box Games. Vassal is open-source software (LGPL). Counter images are sourced from the community Vassal module. This project uses CNA-themed assets but is not affiliated with or endorsed by the rights holders.
+The repository also bundles third-party assets (the CNA map PDF and Vassal-derived counter art) which are **not** covered by the MIT license. See [NOTICE](NOTICE) for attribution and usage notes on those assets.
+
+*The Campaign for North Africa* is © 1979 SPI / © 2022 White Box Games. Vassal is open-source software (LGPL). Counter images originate from the community Vassal module. This project uses CNA-themed assets but is not affiliated with or endorsed by the rights holders.
